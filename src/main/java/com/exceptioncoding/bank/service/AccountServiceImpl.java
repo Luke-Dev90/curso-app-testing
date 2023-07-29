@@ -55,7 +55,6 @@ public class AccountServiceImpl implements AccountService {
 		this.saveAccount(accountDestination);
 		
 		String destino = (transferDTO.getAccountDestination() != null || !transferDTO.getAccountDestination().isEmpty()) ? transferDTO.getAccountDestination() : transferDTO.getAliasDestination();
-		System.out.println(destino);
 		ResponseTransferDTO response = new ResponseTransferDTO(transferDTO.getAccountOrigin(), destino, transferDTO.getReason(), transferDTO.getAmount());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -76,7 +75,6 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public ResponseEntity<String> createAccount(AccountDTO accountDTO) {
-		System.out.println("AccountDTO: "+ accountDTO);
 		Account account = new Account();
 		account.setAlias(accountDTO.getAlias());
 		account.setBalance(new BigDecimal(0));
@@ -85,7 +83,6 @@ public class AccountServiceImpl implements AccountService {
 		account.setIsActive(true);
 		
 		this.saveAccount(account);
-		System.out.println("AccountSAVE: " + account);
 		return new ResponseEntity<>("CREATED", HttpStatus.CREATED);
 	}
 }
